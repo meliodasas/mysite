@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FulfillPro KZ — Kaspi және Wildberries seller-леріне арналған фулфилмент</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a0f1e;
+    --navy-mid: #111827;
+    --navy-light: #1e2d4a;
+    --blue: #2563eb;
+    --blue-light: #3b82f6;
+    --blue-glow: #60a5fa;
+    --green: #059669;
+    --green-light: #10b981;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-400: #94a3b8;
+    --gray-600: #475569;
+    --gray-800: #1e293b;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--white); color: var(--navy); overflow-x: hidden; line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 68px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    transition: var(--transition);
+  }
+  .nav-logo { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; color: var(--navy); letter-spacing: -0.02em; text-decoration: none; }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--gray-600); text-decoration: none; transition: color var(--transition); }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta { background: var(--navy); color: var(--white); border: none; cursor: pointer; font-family: var(--font-body); font-size: 0.875rem; font-weight: 500; padding: 0.55rem 1.25rem; border-radius: 999px; transition: var(--transition); text-decoration: none; }
+  .nav-cta:hover { background: var(--blue); transform: translateY(-1px); }
+  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .burger span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 100px 5% 60px; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #f8fafc 0%, #eef4ff 50%, #f0f7ff 100%);
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+    background-size: 60px 60px; pointer-events: none;
+  }
+  .hero-blob { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+  .hero-blob-1 { width: 500px; height: 500px; background: rgba(37,99,235,0.08); top: -100px; right: 10%; }
+  .hero-blob-2 { width: 300px; height: 300px; background: rgba(5,150,105,0.07); bottom: 0; left: 20%; }
+  .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(37,99,235,0.08); color: var(--blue); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 999px; border: 1px solid rgba(37,99,235,0.15); margin-bottom: 1.5rem; }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--blue); border-radius: 50%; animation: pulse-dot 2s infinite; }
+  @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+  .hero-title { font-family: var(--font-display); font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.03em; color: var(--navy); margin-bottom: 1.25rem; }
+  .hero-title .highlight { background: linear-gradient(135deg, var(--blue) 0%, var(--green) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub { font-size: 1.1rem; font-weight: 500; color: var(--navy); line-height: 1.6; margin-bottom: 0.75rem; }
+  .hero-desc { font-size: 0.95rem; font-weight: 300; color: var(--gray-600); line-height: 1.7; margin-bottom: 2.5rem; max-width: 520px; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+  .btn-primary { background: var(--blue); color: var(--white); padding: 0.85rem 2rem; border-radius: 999px; border: none; cursor: pointer; font-family: var(--font-body); font-size: 0.95rem; font-weight: 500; transition: var(--transition); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37,99,235,0.3); }
+  .btn-telegram { background: #0ea5e9; color: var(--white); padding: 0.85rem 2rem; border-radius: 999px; border: none; cursor: pointer; font-family: var(--font-body); font-size: 0.95rem; font-weight: 500; transition: var(--transition); text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem; }
+  .btn-telegram:hover { background: #0284c7; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(14,165,233,0.3); }
+  .btn-outline { background: transparent; color: var(--navy); padding: 0.85rem 2rem; border-radius: 999px; border: 1.5px solid var(--gray-200); cursor: pointer; font-family: var(--font-body); font-size: 0.95rem; font-weight: 500; transition: var(--transition); text-decoration: none; }
+  .btn-outline:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .hero-stats { display: flex; gap: 2.5rem; }
+  .hero-stat .num { font-family: var(--font-display); font-size: 1.55rem; font-weight: 800; color: var(--navy); letter-spacing: -0.03em; }
+  .hero-stat .lbl { font-size: 0.75rem; color: var(--gray-400); font-weight: 400; }
+
+  /* HERO RIGHT */
+  .hero-right { position: relative; }
+  .hero-card-main { background: var(--white); border-radius: var(--radius-xl); padding: 2rem; box-shadow: 0 24px 64px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04); position: relative; overflow: hidden; }
+  .hero-card-main::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--green)); }
+  .dashboard-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+  .dashboard-title { font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+  .dashboard-status { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; color: #16a34a; font-weight: 500; }
+  .dashboard-status::before { content: ''; width: 6px; height: 6px; background: #16a34a; border-radius: 50%; }
+  .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+  .dash-metric { background: var(--gray-50); border-radius: var(--radius-md); padding: 0.85rem 1rem; border: 1px solid var(--gray-100); }
+  .dash-metric .m-label { font-size: 0.68rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+  .dash-metric .m-val { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; }
+  .dash-metric .m-delta { font-size: 0.7rem; color: #16a34a; font-weight: 500; margin-top: 0.2rem; }
+  .bar-row { display: flex; gap: 0.4rem; align-items: center; margin-bottom: 0.5rem; }
+  .bar-name { font-size: 0.72rem; color: var(--gray-600); width: 80px; white-space: nowrap; }
+  .bar-track { flex: 1; height: 6px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .bar-pct { font-size: 0.7rem; color: var(--gray-400); width: 40px; text-align: right; }
+  .float-card { position: absolute; background: var(--white); border-radius: var(--radius-md); padding: 0.7rem 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.10); display: flex; align-items: center; gap: 0.65rem; font-size: 0.8rem; font-weight: 500; color: var(--navy); white-space: nowrap; animation: float-bob 4s ease-in-out infinite; }
+  .float-card .fc-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+  .float-card-1 { top: -20px; right: -30px; animation-delay: 0s; }
+  .float-card-2 { bottom: 30px; right: -40px; animation-delay: 1.5s; }
+  .float-card-3 { bottom: -20px; left: -20px; animation-delay: 3s; }
+  @keyframes float-bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+  /* SHARED SECTION */
+  section { padding: 100px 5%; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.75rem; }
+  .section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em; color: var(--navy); line-height: 1.15; margin-bottom: 1rem; }
+  .section-sub { font-size: 1.02rem; color: var(--gray-600); max-width: 560px; font-weight: 300; line-height: 1.7; }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-sub { margin: 0 auto; }
+
+  /* WHY */
+  #why { background: var(--navy); }
+  #why .section-label { color: var(--blue-glow); }
+  #why .section-title { color: var(--white); }
+  #why .section-sub { color: rgba(255,255,255,0.55); }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border-radius: var(--radius-lg); overflow: hidden; }
+  .why-card { background: var(--navy-mid); padding: 2rem; transition: var(--transition); cursor: default; }
+  .why-card:hover { background: var(--navy-light); }
+  .why-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(37,99,235,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.25rem; transition: var(--transition); }
+  .why-card:hover .why-icon { background: var(--blue); transform: scale(1.05); }
+  .why-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .why-card p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+  /* SERVICES */
+  #services { background: var(--gray-50); }
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .service-card { background: var(--white); border-radius: var(--radius-lg); padding: 1.75rem; border: 1px solid var(--gray-100); transition: var(--transition); cursor: default; }
+  .service-card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(37,99,235,0.08); }
+  .service-num { font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; color: var(--blue); letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .service-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .service-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+  .service-card p { font-size: 0.82rem; color: var(--gray-400); line-height: 1.6; }
+
+  /* HOW */
+  #how { background: var(--white); }
+  .steps-container { position: relative; }
+  .steps-line { position: absolute; top: 32px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blue), var(--green)); z-index: 0; }
+  .steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; position: relative; z-index: 1; }
+  .step-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .step-circle { width: 64px; height: 64px; border-radius: 50%; background: var(--white); border: 2px solid var(--blue); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: var(--blue); margin-bottom: 1.25rem; box-shadow: 0 0 0 6px rgba(37,99,235,0.08); transition: var(--transition); }
+  .step-item:hover .step-circle { background: var(--blue); color: var(--white); box-shadow: 0 0 0 8px rgba(37,99,235,0.12); transform: scale(1.1); }
+  .step-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+  .step-item h3 { font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+  .step-item p { font-size: 0.78rem; color: var(--gray-400); line-height: 1.5; }
+
+  /* PRICING */
+  #pricing { background: var(--gray-50); }
+  .pricing-intro { text-align: center; margin-bottom: 2rem; }
+  .size-table-wrap { max-width: 680px; margin: 0 auto; }
+  .size-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+  .size-table thead tr { background: var(--navy); }
+  .size-table thead th { padding: 1rem 1.5rem; font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; color: var(--white); text-align: left; letter-spacing: 0.04em; }
+  .size-table tbody tr { border-bottom: 1px solid var(--gray-100); transition: background var(--transition); }
+  .size-table tbody tr:last-child { border-bottom: none; }
+  .size-table tbody tr:hover { background: var(--gray-50); }
+  .size-table td { padding: 1rem 1.5rem; font-size: 0.95rem; color: var(--gray-600); }
+  .size-table td:first-child { font-family: var(--font-display); font-weight: 700; color: var(--navy); font-size: 1.05rem; }
+  .size-table td.price { font-family: var(--font-display); font-weight: 800; color: var(--blue); font-size: 1.2rem; }
+  .size-table td.qty { color: var(--gray-400); }
+  .size-table td.revenue { color: var(--green); font-weight: 600; }
+  .pricing-totals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; max-width: 680px; margin-left: auto; margin-right: auto; }
+  .total-card { background: var(--white); border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--gray-100); text-align: center; }
+  .total-card .t-lbl { font-size: 0.72rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .total-card .t-val { font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; }
+  .total-card .t-sub { font-size: 0.72rem; color: var(--gray-400); margin-top: 0.25rem; }
+
+  /* TRACKING */
+  #tracking { background: var(--white); overflow: hidden; }
+  .tracking-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .tracking-ui { background: var(--gray-50); border-radius: var(--radius-xl); padding: 1.5rem; border: 1px solid var(--gray-100); position: relative; }
+  .tracking-ui::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blue), var(--green)); border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
+  .t-header { display: flex; gap: 0.4rem; margin-bottom: 1rem; }
+  .t-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .t-dot-r { background: #ef4444; } .t-dot-y { background: #f59e0b; } .t-dot-g { background: #22c55e; }
+  .t-row { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .t-widget { background: var(--white); border-radius: var(--radius-md); padding: 1rem; border: 1px solid var(--gray-100); flex: 1; }
+  .t-widget-label { font-size: 0.68rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .t-widget-val { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: var(--navy); letter-spacing: -0.03em; }
+  .t-widget-sub { font-size: 0.7rem; color: #16a34a; margin-top: 0.2rem; }
+  .t-table { background: var(--white); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--gray-100); }
+  .t-table-head { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; padding: 0.6rem 1rem; background: var(--gray-50); border-bottom: 1px solid var(--gray-100); }
+  .t-table-head span { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); }
+  .t-table-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; padding: 0.6rem 1rem; border-bottom: 1px solid var(--gray-100); align-items: center; }
+  .t-table-row:last-child { border-bottom: none; }
+  .t-table-row span { font-size: 0.78rem; color: var(--gray-600); }
+  .t-table-row span:first-child { color: var(--navy); font-weight: 500; }
+  .status-badge { display: inline-flex; align-items: center; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.65rem; font-weight: 600; }
+  .badge-ok { background: rgba(22,163,74,0.08); color: #16a34a; }
+  .badge-proc { background: rgba(37,99,235,0.08); color: var(--blue); }
+  .badge-warn { background: rgba(245,158,11,0.08); color: #d97706; }
+
+  /* CONTACT */
+  #contact { background: var(--navy); }
+  #contact .section-label { color: var(--blue-glow); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-sub { color: rgba(255,255,255,0.45); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
+  .form-group label { font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.55); }
+  .form-group input, .form-group textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); padding: 0.8rem 1rem; font-family: var(--font-body); font-size: 0.9rem; color: var(--white); outline: none; transition: border-color var(--transition); resize: none; }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--blue-light); }
+  .contact-messengers { display: flex; gap: 1rem; margin-top: 0.5rem; }
+  .messenger-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.6rem; padding: 0.85rem; border-radius: var(--radius-sm); cursor: pointer; border: none; font-family: var(--font-body); font-size: 0.88rem; font-weight: 600; transition: var(--transition); text-decoration: none; }
+  .wa-btn { background: #0ea5e9; color: var(--white); }
+  .wa-btn:hover { background: #0284c7; transform: translateY(-2px); }
+  .tg-btn { background: #0ea5e9; color: var(--white); }
+  .tg-btn:hover { background: #0284c7; transform: translateY(-2px); }
+  .contact-info { }
+  .contact-map-wrap { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding: 2rem; margin-bottom: 2rem; text-align: center; min-height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .map-pin { font-size: 3rem; margin-bottom: 0.75rem; animation: pin-bounce 2s ease-in-out infinite; }
+  @keyframes pin-bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .map-city { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--white); }
+  .map-addr { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-top: 0.3rem; }
+  .contact-details { display: flex; flex-direction: column; gap: 0.9rem; }
+  .contact-detail { display: flex; align-items: center; gap: 0.75rem; }
+  .contact-detail-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(37,99,235,0.15); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .contact-detail span { font-size: 0.88rem; color: rgba(255,255,255,0.65); }
+
+  /* FOOTER */
+  footer { background: #060a14; padding: 3.5rem 5% 2rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .footer-brand .logo { font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; color: var(--white); letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+  .footer-brand .logo span { color: var(--blue-glow); }
+  .footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 240px; }
+  .footer-col h4 { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul a { font-size: 0.85rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--transition); }
+  .footer-col ul a:hover { color: var(--white); }
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; }
+  .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+  .footer-socials { display: flex; gap: 1rem; }
+  .footer-social { width: 34px; height: 34px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.35); text-decoration: none; font-size: 0.85rem; transition: var(--transition); }
+  .footer-social:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.1s; } .reveal-d2 { transition-delay: 0.2s; } .reveal-d3 { transition-delay: 0.3s; }
+  .reveal-d4 { transition-delay: 0.4s; } .reveal-d5 { transition-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: repeat(3, 1fr); }
+    .steps-line { display: none; }
+    .tracking-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .pricing-totals { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    section { padding: 70px 5%; }
+    .nav-links { display: none; }
+    .burger { display: flex; }
+    .why-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 1rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .pricing-totals { grid-template-columns: 1fr; }
+    .size-table thead th, .size-table td { padding: 0.75rem 1rem; font-size: 0.85rem; }
+  }
+
+  /* THEME TOGGLE BUTTON */
+  .theme-toggle {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1.5px solid var(--gray-200);
+    background: transparent; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; transition: var(--transition);
+    flex-shrink: 0;
+  }
+  .theme-toggle:hover { border-color: var(--blue); transform: rotate(20deg) scale(1.1); }
+
+  /* DARK MODE */
+  body.dark {
+    --white: #0f1623;
+    --gray-50: #161d2e;
+    --gray-100: #1e2840;
+    --gray-200: #2a3650;
+    --gray-400: #6b7fa3;
+    --gray-600: #8fa3c8;
+    --navy: #e8edf5;
+    --navy-mid: #1a2236;
+    --navy-light: #1e2d4a;
+    background: #0f1623;
+    color: #e8edf5;
+  }
+  body.dark nav {
+    background: rgba(15,22,35,0.9);
+    border-bottom-color: rgba(255,255,255,0.06);
+  }
+  body.dark .nav-logo { color: #e8edf5; }
+  body.dark .nav-links a { color: #8fa3c8; }
+  body.dark .nav-links a:hover { color: #e8edf5; }
+  body.dark .theme-toggle { border-color: rgba(255,255,255,0.12); }
+  body.dark .theme-toggle:hover { border-color: var(--blue-light); }
+  body.dark .hero-card-main { background: #161d2e; box-shadow: 0 24px 64px rgba(0,0,0,0.4); }
+  body.dark .dash-metric { background: #1a2236; border-color: #2a3650; }
+  body.dark .float-card { background: #161d2e; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  body.dark .service-card { background: #161d2e; border-color: #2a3650; }
+  body.dark .service-card:hover { border-color: var(--blue); }
+  body.dark .pricing-card { background: #161d2e; border-color: #2a3650; }
+  body.dark .size-table { background: #161d2e; }
+  body.dark .size-table thead tr { background: #0a0f1e; }
+  body.dark .size-table tbody tr { border-color: #2a3650; }
+  body.dark .size-table tbody tr:hover { background: #1a2236; }
+  body.dark .total-card { background: #161d2e; border-color: #2a3650; }
+  body.dark .t-widget { background: #1a2236; border-color: #2a3650; }
+  body.dark .t-table { background: #1a2236; border-color: #2a3650; }
+  body.dark .t-table-head { background: #161d2e; border-color: #2a3650; }
+  body.dark .t-table-row { border-color: #2a3650; }
+  body.dark .tracking-ui { background: #161d2e; border-color: #2a3650; }
+  body.dark .review-card { background: #161d2e; border-color: #2a3650; }
+  body.dark .step-circle { background: #161d2e; }
+  body.dark footer { background: #08111e; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">FulfillPro <span>KZ</span></a>
+  <ul class="nav-links">
+    <li><a href="#why">Артықшылықтар</a></li>
+    <li><a href="#services">Қызметтер</a></li>
+    <li><a href="#pricing">Бағалар</a></li>
+    <li><a href="#tracking">Tracking</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Тақырып ауыстыру" title="Қараңғы / Ашық режим">
+      <span class="theme-icon">🌙</span>
+    </button>
+    <a href="https://web.telegram.org/k/#@MirleeeBOT" class="nav-cta tg-nav" target="_blank">Telegram арқылы жазу</a>
+    <button class="burger" onclick="toggleMenu()" aria-label="Мәзір">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge reveal">🇰🇿 Алматы, Қазақстан</div>
+      <h1 class="hero-title reveal reveal-d1">
+        FulfillPro KZ —<br>
+        <span class="highlight">Kaspi және Wildberries</span><br>
+        seller-леріне арналған фулфилмент
+      </h1>
+      <p class="hero-sub reveal reveal-d2">Сіз сатыңыз — орау, маркировка және дайындауды біз өз мойнымызға аламыз.</p>
+      <p class="hero-desc reveal reveal-d2">Тауарыңызды қабылдап, сұрыптап, маркетплейс талаптарына сай орап, складтарға уақытында дайындаймыз.</p>
+      <div class="hero-btns reveal reveal-d3">
+        <a href="https://web.telegram.org/k/#@MirleeeBOT" class="btn-telegram" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.820 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Telegram арқылы байланысу
+        </a>
+        <a href="#pricing" class="btn-outline">Бағаларды көру</a>
+      </div>
+      <div class="hero-stats reveal reveal-d4">
+        <div class="hero-stat">
+          <div class="num">2 210</div>
+          <div class="lbl">тауар / күніне</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">975 000 ₸</div>
+          <div class="lbl">күндік айналым</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">Алматы</div>
+          <div class="lbl">негізгі қала</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right reveal reveal-d2">
+      <div class="hero-card-main">
+        <div class="dashboard-header">
+          <div class="dashboard-title">Telegram Bot Tracking</div>
+          <div class="dashboard-status">Белсенді</div>
+        </div>
+        <div class="dash-grid">
+          <div class="dash-metric">
+            <div class="m-label">Бүгін өңделді</div>
+            <div class="m-val">2,210</div>
+            <div class="m-delta">тауар / күніне мүмкіндік</div>
+          </div>
+          <div class="dash-metric">
+            <div class="m-label">Күндік айналым</div>
+            <div class="m-val">975К ₸</div>
+            <div class="m-delta">26 жұмыс күні / ай</div>
+          </div>
+          <div class="dash-metric">
+            <div class="m-label">Kaspi заказдары</div>
+            <div class="m-val">1,650</div>
+            <div class="m-delta">дейін / күніне</div>
+          </div>
+          <div class="dash-metric">
+            <div class="m-label">WB заказдары</div>
+            <div class="m-val">560</div>
+            <div class="m-delta">дейін / күніне</div>
+          </div>
+        </div>
+        <div style="margin-top:0.5rem;">
+          <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--gray-400);margin-bottom:0.5rem;"><span>Платформалар</span><span>Үлес</span></div>
+          <div class="bar-row">
+            <span class="bar-name">Kaspi</span>
+            <div class="bar-track"><div class="bar-fill" style="width:75%;background:#d32f2f;"></div></div>
+            <span class="bar-pct">75%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-name">Wildberries</span>
+            <div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--blue);"></div></div>
+            <span class="bar-pct">25%</span>
+          </div>
+        </div>
+      </div>
+      <div class="float-card float-card-1">
+        <div class="fc-icon" style="background:rgba(34,197,94,0.1);">📦</div>
+        <div>
+          <div style="font-size:0.7rem;color:var(--gray-400);">Жылдам орау</div>
+          <div>Маркетплейс талаптарына сай</div>
+        </div>
+      </div>
+      <div class="float-card float-card-2">
+        <div class="fc-icon" style="background:rgba(37,99,235,0.1);">💬</div>
+        <div>
+          <div style="font-size:0.7rem;color:var(--gray-400);">Telegram Bot</div>
+          <div>Tracking код бойынша</div>
+        </div>
+      </div>
+      <div class="float-card float-card-3">
+        <div class="fc-icon" style="background:rgba(245,158,11,0.1);">🏷️</div>
+        <div>
+          <div style="font-size:0.7rem;color:var(--gray-400);">Маркировка</div>
+          <div>Kaspi және WB стандарты</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label reveal">Артықшылықтар</div>
+      <h2 class="section-title reveal reveal-d1">Неліктен FulfillPro KZ<br>таңдайды?</h2>
+      <p class="section-sub reveal reveal-d2">Біз сатушыларға уақыт үнемдеп, маркетплейс талаптарына сай дайындауға көмектесеміз.</p>
+    </div>
+    <div class="why-grid reveal reveal-d2">
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h3>Жылдам дайындау</h3>
+        <p>Тауар көлеміне байланысты тиімді жылдамдықпен орап, маркировка жасаймыз. Уақытында дайындау — біздің міндет.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">✅</div>
+        <h3>Маркетплейс стандарттары</h3>
+        <p>Kaspi және Wildberries талаптарын толық сақтаймыз — айыппұл тәуекелін азайтуға бағытталған жұмыс.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <h3>Шығынды азайту</h3>
+        <p>Жеке склад, жабдық және қызметкер жалдаудың керегі жоқ. Нәтиже үшін ғана төлейсіз.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔄</div>
+        <h3>Толық цикл</h3>
+        <p>Тауар қабылдаудан маркетплейс складына дайындауға дейін — барлығы бір жерде.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💬</div>
+        <h3>Telegram Bot tracking</h3>
+        <p>Tracking код арқылы Telegram ботта тауарыңыздың жай-күйін тез біле аласыз.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h3>Seller-ге қолдау</h3>
+        <p>Сіздің сұрақтарыңызға жылдам жауап беретін менеджер. Kaspi және WB мәселелерінде көмек.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header center">
+      <div class="section-label reveal">Қызметтер</div>
+      <h2 class="section-title reveal reveal-d1">Тауарыңыз үшін<br>толық сервис</h2>
+      <p class="section-sub reveal reveal-d2">Kaspi және Wildberries seller-леріне арналған барлық фулфилмент қызметтері.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-d1">
+        <div class="service-num">01</div>
+        <div class="service-icon">📥</div>
+        <h3>Тауарды қабылдау</h3>
+        <p>Жеткізушіден тауарды қабылдаймыз, саны мен сапасын тексереміз, тіркейміз.</p>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <div class="service-num">02</div>
+        <div class="service-icon">🗂️</div>
+        <h3>Сұрыптау</h3>
+        <p>Тауарды артикулдар, өлшемдер мен санаттар бойынша сұрыптап, қоймаға орналастырамыз.</p>
+      </div>
+      <div class="service-card reveal reveal-d3">
+        <div class="service-num">03</div>
+        <div class="service-icon">📦</div>
+        <h3>Орау</h3>
+        <p>Kaspi және Wildberries талаптарына сай кәсіби орау. Сенімді және нақты.</p>
+      </div>
+      <div class="service-card reveal reveal-d4">
+        <div class="service-num">04</div>
+        <div class="service-icon">🏷️</div>
+        <h3>Маркировка жасау</h3>
+        <p>Kaspi және WB стандарттарына сай барлық қажетті этикеткалар мен штрих-кодтарды басамыз.</p>
+      </div>
+      <div class="service-card reveal reveal-d1">
+        <div class="service-num">05</div>
+        <div class="service-icon">🏭</div>
+        <h3>Қоймада сақтау</h3>
+        <p>Алматыдағы қоймада тауарды сақтау мүмкіндігі. Қауіпсіз және ыңғайлы.</p>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <div class="service-num">06</div>
+        <div class="service-icon">✅</div>
+        <h3>Kaspi және WB дайындау</h3>
+        <p>Маркетплейс талаптарына толық сай дайындау — айыппұл тәуекелін азайтамыз.</p>
+      </div>
+      <div class="service-card reveal reveal-d3">
+        <div class="service-num">07</div>
+        <div class="service-icon">🔍</div>
+        <h3>Tracking код беру</h3>
+        <p>Әр тапсырысқа tracking код беріп, сілтеме арқылы жай-күйін қадағалауға мүмкіндік жасаймыз.</p>
+      </div>
+      <div class="service-card reveal reveal-d4">
+        <div class="service-num">08</div>
+        <div class="service-icon">💬</div>
+        <h3>Telegram Bot ақпарат</h3>
+        <p>AI-көмекші және Telegram бот арқылы тауарыңыздың жай-күйі туралы тез ақпарат аласыз.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="section-inner">
+    <div class="section-header center">
+      <div class="section-label reveal">Процесс</div>
+      <h2 class="section-title reveal reveal-d1">Біз қалай жұмыс істейміз</h2>
+      <p class="section-sub reveal reveal-d2">Қарапайым және ашық процесс — тауарыңыздың жай-күйін әрдайым біліп отырасыз.</p>
+    </div>
+    <div class="steps-container">
+      <div class="steps-line"></div>
+      <div class="steps-grid">
+        <div class="step-item reveal reveal-d1">
+          <div class="step-circle">1</div>
+          <div class="step-icon">🚛</div>
+          <h3>Тауар жібересіз</h3>
+          <p>Жеткізушіден немесе жеке қорыңыздан тауар жіберіп беріңіз</p>
+        </div>
+        <div class="step-item reveal reveal-d2">
+          <div class="step-circle">2</div>
+          <div class="step-icon">🔍</div>
+          <h3>Қабылдап, тексереміз</h3>
+          <p>Санайды, сапасын тексереміз, жүйеге тіркейміз</p>
+        </div>
+        <div class="step-item reveal reveal-d3">
+          <div class="step-circle">3</div>
+          <div class="step-icon">📦</div>
+          <h3>Ораймыз, маркировка жасаймыз</h3>
+          <p>Маркетплейс стандартына сай орап, этикетка басамыз</p>
+        </div>
+        <div class="step-item reveal reveal-d4">
+          <div class="step-circle">4</div>
+          <div class="step-icon">🏪</div>
+          <h3>Маркетплейске дайындаймыз</h3>
+          <p>Kaspi немесе Wildberries складына уақытында дайын жасаймыз</p>
+        </div>
+        <div class="step-item reveal reveal-d5">
+          <div class="step-circle">5</div>
+          <div class="step-icon">💬</div>
+          <h3>Telegram арқылы хабарласыз</h3>
+          <p>Tracking код немесе сілтеме арқылы жай-күйді тез білесіз</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-header center">
+      <div class="section-label reveal">Бағалар</div>
+      <h2 class="section-title reveal reveal-d1">Ашық және түсінікті баға</h2>
+      <p class="section-sub reveal reveal-d2">Баға тауар өлшеміне байланысты. Жасырын төлем жоқ.</p>
+    </div>
+    <div class="size-table-wrap reveal reveal-d1">
+      <table class="size-table">
+        <thead>
+          <tr>
+            <th>Өлшем</th>
+            <th>Баға (₸)</th>
+            <th>Күндік саны</th>
+            <th>Күндік айналым</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>S өлшем</td>
+            <td class="price">300 ₸</td>
+            <td class="qty">1 100 дана</td>
+            <td class="revenue">330 000 ₸</td>
+          </tr>
+          <tr>
+            <td>M өлшем</td>
+            <td class="price">500 ₸</td>
+            <td class="qty">780 дана</td>
+            <td class="revenue">390 000 ₸</td>
+          </tr>
+          <tr>
+            <td>L өлшем</td>
+            <td class="price">700 ₸</td>
+            <td class="qty">250 дана</td>
+            <td class="revenue">175 000 ₸</td>
+          </tr>
+          <tr>
+            <td>XL өлшем</td>
+            <td class="price">1 000 ₸</td>
+            <td class="qty">80 дана</td>
+            <td class="revenue">80 000 ₸</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pricing-totals reveal reveal-d2">
+        <div class="total-card">
+          <div class="t-lbl">Күндік айналым</div>
+          <div class="t-val">975 000 ₸</div>
+          <div class="t-sub">2 210 тауар / күн</div>
+        </div>
+        <div class="total-card">
+          <div class="t-lbl">Айлық айналым</div>
+          <div class="t-val">25 350 000 ₸</div>
+          <div class="t-sub">26 жұмыс күні</div>
+        </div>
+        <div class="total-card">
+          <div class="t-lbl">Жылдық айналым</div>
+          <div class="t-val">304 200 000 ₸</div>
+          <div class="t-sub">болжамды</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <a href="https://web.telegram.org/k/#@MirleeeBOT" class="btn-telegram" target="_blank" style="display:inline-flex;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.820 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Telegram арқылы баға сұрау
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKING -->
+<section id="tracking">
+  <div class="tracking-inner">
+    <div class="reveal">
+      <div class="section-label">Технология</div>
+      <h2 class="section-title">Telegram Bot арқылы тауарыңызды бақылаңыз</h2>
+      <p class="section-sub" style="margin-bottom:2rem;">Жеке кабинет қажет емес. Tracking код немесе сілтеме арқылы Telegram ботта тауарыңыздың жай-күйін тез біліңіз.</p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:0.85rem;">
+        <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;color:var(--gray-600);">
+          <span style="width:28px;height:28px;background:rgba(37,99,235,0.08);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;">💬</span>
+          Telegram бот арқылы жылдам ақпарат алу
+        </li>
+        <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;color:var(--gray-600);">
+          <span style="width:28px;height:28px;background:rgba(37,99,235,0.08);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;">🔍</span>
+          Tracking код бойынша заказ жай-күйін тексеру
+        </li>
+        <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;color:var(--gray-600);">
+          <span style="width:28px;height:28px;background:rgba(37,99,235,0.08);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;">🤖</span>
+          AI-көмекші арқылы сұрақтарға жылдам жауап
+        </li>
+        <li style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;color:var(--gray-600);">
+          <span style="width:28px;height:28px;background:rgba(37,99,235,0.08);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;">🔗</span>
+          Tracking сілтемесі арқылы өздігінен тексеру
+        </li>
+      </ul>
+    </div>
+    <div class="tracking-ui reveal reveal-d2">
+      <div class="t-header">
+        <div class="t-dot t-dot-r"></div>
+        <div class="t-dot t-dot-y"></div>
+        <div class="t-dot t-dot-g"></div>
+        <span style="font-size:0.72rem;color:var(--gray-400);margin-left:0.5rem;">Telegram Bot — FulfillPro KZ</span>
+      </div>
+      <div class="t-row">
+        <div class="t-widget">
+          <div class="t-widget-label">Бүгін орапталды</div>
+          <div class="t-widget-val">2,210</div>
+          <div class="t-widget-sub">тауар / күніне мүмкіндік</div>
+        </div>
+        <div class="t-widget">
+          <div class="t-widget-label">Күндік айналым</div>
+          <div class="t-widget-val">975К ₸</div>
+          <div class="t-widget-sub">болжамды</div>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-widget">
+          <div class="t-widget-label">Kaspi дайын</div>
+          <div class="t-widget-val">1,650</div>
+          <div class="t-widget-sub" style="color:var(--blue);">дейін / күніне</div>
+        </div>
+        <div class="t-widget">
+          <div class="t-widget-label">WB дайын</div>
+          <div class="t-widget-val">560</div>
+          <div class="t-widget-sub" style="color:var(--blue);">дейін / күніне</div>
+        </div>
+      </div>
+      <div class="t-table">
+        <div class="t-table-head">
+          <span>Тапсырыс</span><span>Платформа</span><span>Өлшем</span><span>Күй</span>
+        </div>
+        <div class="t-table-row">
+          <span>#KSP-4821</span>
+          <span>Kaspi</span>
+          <span>M</span>
+          <span><span class="status-badge badge-ok">Дайын</span></span>
+        </div>
+        <div class="t-table-row">
+          <span>#WB-3302</span>
+          <span>Wildberries</span>
+          <span>S</span>
+          <span><span class="status-badge badge-proc">Оралуда</span></span>
+        </div>
+        <div class="t-table-row">
+          <span>#KSP-4820</span>
+          <span>Kaspi</span>
+          <span>L</span>
+          <span><span class="status-badge badge-warn">Маркировка</span></span>
+        </div>
+        <div class="t-table-row">
+          <span>#WB-3301</span>
+          <span>Wildberries</span>
+          <span>XL</span>
+          <span><span class="status-badge badge-ok">Дайын</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label reveal">Байланыс</div>
+      <h2 class="section-title reveal reveal-d1">Бүгін бастаңыз</h2>
+      <p class="section-sub reveal reveal-d2">Форма толтырыңыз немесе Telegram арқылы жазыңыз — жылдам жауап береміз.</p>
+    </div>
+    <div class="contact-inner">
+      <div class="reveal">
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Атыңыз</label>
+              <input type="text" placeholder="Айдар">
+            </div>
+            <div class="form-group">
+              <label>Телефон</label>
+              <input type="tel" placeholder="+7 (777) 000-00-00">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Дүкен / компания атауы</label>
+            <input type="text" placeholder="Kaspi дүкенім">
+          </div>
+          <div class="form-group">
+            <label>Тауарыңыз туралы</label>
+            <textarea rows="4" placeholder="Тауарыңыз, көлемі, Kaspi немесе Wildberries туралы айтыңыз..."></textarea>
+          </div>
+          <button class="btn-primary" style="width:100%;justify-content:center;padding:1rem;" onclick="alert('Өтінім жіберілді! Жақын арада хабарласамыз.')">
+            Өтінім жіберу →
+          </button>
+        </div>
+        <div style="margin-top:1.5rem;">
+          <p style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-bottom:0.75rem;">Немесе тікелей жазыңыз:</p>
+          <div class="contact-messengers">
+            <a href="https://web.telegram.org/k/#@MirleeeBOT" class="messenger-btn tg-btn" target="_blank" style="flex:unset;width:100%;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.820 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              Telegram арқылы жазу — FulfillPro KZ
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-info reveal reveal-d2">
+        <div class="contact-map-wrap">
+          <div class="map-pin">📍</div>
+          <div class="map-city">Алматы, Қазақстан</div>
+          <div class="map-addr">FulfillPro KZ қоймасы — Алматы</div>
+        </div>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📞</div>
+            <span>+7 (700) 000-00-00</span>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">✉️</div>
+            <span>hello@fulfillpro.kz</span>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">🕐</div>
+            <div>
+              <span style="display:block;">Дүйсенбі – Сенбі: 08:00 – 20:00</span>
+              <span style="display:block;font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:2px;">Үзіліс: 14:00 – 15:00</span>
+              <span style="display:block;font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:2px;">Жексенбі және мереке күндері — демалыс</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📋</div>
+            <span>Маңызды жөнелтулер алдын ала жоспарланады</span>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">🏢</div>
+            <span>Негізгі орналасқан жер: Алматы</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">FulfillPro <span>KZ</span></div>
+        <p>Маркетплейс сатушыларына арналған фулфилмент қызметі. Алматы, Қазақстан. Kaspi және Wildberries seller-леріне арналған шешім.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Қызметтер</h4>
+        <ul>
+          <li><a href="#services">Тауарды қабылдау</a></li>
+          <li><a href="#services">Сұрыптау</a></li>
+          <li><a href="#services">Орау</a></li>
+          <li><a href="#services">Маркировка</a></li>
+          <li><a href="#services">Қоймада сақтау</a></li>
+          <li><a href="#services">Tracking беру</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Компания</h4>
+        <ul>
+          <li><a href="#why">Артықшылықтар</a></li>
+          <li><a href="#how">Жұмыс процесі</a></li>
+          <li><a href="#pricing">Бағалар</a></li>
+          <li><a href="#tracking">Telegram Tracking</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Байланыс</h4>
+        <ul>
+          <li><a href="https://web.telegram.org/k/#@MirleeeBOT">Telegram</a></li>
+          <li><a href="https://t.me/fulfillprokz">Telegram</a></li>
+          <li><a href="mailto:hello@fulfillpro.kz">hello@fulfillpro.kz</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">FulfillPro KZ © 2026 — Алматы, Қазақстан</span>
+      <div class="footer-socials">
+        <a href="#" class="footer-social" title="Instagram">📸</a>
+        <a href="https://t.me/fulfillprokz" class="footer-social" title="Telegram">✈️</a>
+        <a href="https://web.telegram.org/k/#@MirleeeBOT" class="footer-social" title="Telegram">✈️</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+      links.style.display = '';
+    } else {
+      links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:white;padding:1.5rem 5%;gap:1.25rem;border-bottom:1px solid #e2e8f0;z-index:99;';
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.boxShadow = window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,0.07)' : 'none';
+  });
+
+  function toggleTheme() {
+    const isDark = document.body.classList.toggle('dark');
+    document.querySelector('.theme-icon').textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+  // Load saved theme
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.querySelector('.theme-icon').textContent = '☀️';
+  }
+</script>
+</body>
+</html>
